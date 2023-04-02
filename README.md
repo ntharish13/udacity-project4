@@ -54,7 +54,7 @@ sudo systemctl status docker
 ```bash
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
-```bash
+```
 
 We need to make sure to run the "minikube start" with root access.
 
@@ -64,7 +64,7 @@ curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stabl
 curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
 echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
-```bash
+```
 
 
 ### Running `app.py`
@@ -87,10 +87,10 @@ Refer Kubernetes Installation steps (above)
 ```bash
 docker build --tag=udacityproject4 .
 docker run -p 8000:80 udacityproject4
-```bash
+```
 * Run via kubectl
 ```bash
 dockerpath=ntharish13/udacityproject4
 kubectl run udaproject4 --image=$dockerpath --port=80
 kubectl port-forward udaproject4 8000:80
-```bash
+```
