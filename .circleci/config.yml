@@ -40,5 +40,5 @@ jobs:
       - run:
           name: run lint
           command: |
-          . devops/bin/activate
-          make lint 
+            . devops/bin/activate
+            make lint 
