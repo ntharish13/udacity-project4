@@ -40,6 +40,7 @@ source ~/.devops/bin/activate
 https://github.com/ntharish13/udacity-project4
 
 ### Docker Installation Steps
+```bash
 sudo apt install apt-transport-https ca-certificates curl software-properties-common
 curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
 sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
@@ -47,18 +48,23 @@ sudo apt update -y
 apt-cache policy docker-ce
 sudo apt install docker-ce
 sudo systemctl status docker
+```
 
 ### Minikube Installation Steps
+```bash
 curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 sudo install minikube-linux-amd64 /usr/local/bin/minikube
+```bash
 
 We need to make sure to run the "minikube start" with root access.
 
 ### Kubernetes Installation Steps
+```bash
 curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
 curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
 echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
 sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+```bash
 
 
 ### Running `app.py`
@@ -70,13 +76,21 @@ sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
 ### Kubernetes Steps
 
 * Setup and Configure Docker locally
+
 Refer Docker Installation Steps (above)
+
 * Setup and Configure Kubernetes locally
+
 Refer Kubernetes Installation steps (above)
+
 * Create Flask app in Container
+```bash
 docker build --tag=udacityproject4 .
 docker run -p 8000:80 udacityproject4
+```bash
 * Run via kubectl
+```bash
 dockerpath=ntharish13/udacityproject4
 kubectl run udaproject4 --image=$dockerpath --port=80
 kubectl port-forward udaproject4 8000:80
+```bash
