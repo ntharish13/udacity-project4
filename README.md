@@ -1,4 +1,4 @@
-<include a CircleCI status badge, here>
+[![CircleCI](https://dl.circleci.com/status-badge/img/gh/ntharish13/udaproject3/tree/circleci-project-setup.svg?style=svg)](https://dl.circleci.com/status-badge/redirect/gh/ntharish13/udaproject3/tree/circleci-project-setup)
 
 ## Project Overview
 
@@ -31,10 +31,35 @@ python3 -m pip install --user virtualenv
 # You should have Python 3.7 available in your host. 
 # Check the Python path using `which python3`
 # Use a command similar to this one:
-python3 -m virtualenv --python=<path-to-Python3.7> .devops
-source .devops/bin/activate
+python3 -m venv ~/.devops
+source ~/.devops/bin/activate
 ```
 * Run `make install` to install the necessary dependencies
+
+### GIT URL
+https://github.com/ntharish13/udacity-project4
+
+### Docker Installation Steps
+sudo apt install apt-transport-https ca-certificates curl software-properties-common
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo apt-key add -
+sudo add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu bionic stable"
+sudo apt update -y
+apt-cache policy docker-ce
+sudo apt install docker-ce
+sudo systemctl status docker
+
+### Minikube Installation Steps
+curl -LO https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
+sudo install minikube-linux-amd64 /usr/local/bin/minikube
+
+We need to make sure to run the "minikube start" with root access.
+
+### Kubernetes Installation Steps
+curl -LO "https://dl.k8s.io/release/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl"
+curl -LO "https://dl.k8s.io/$(curl -L -s https://dl.k8s.io/release/stable.txt)/bin/linux/amd64/kubectl.sha256"
+echo "$(cat kubectl.sha256)  kubectl" | sha256sum --check
+sudo install -o root -g root -m 0755 kubectl /usr/local/bin/kubectl
+
 
 ### Running `app.py`
 
@@ -45,6 +70,13 @@ source .devops/bin/activate
 ### Kubernetes Steps
 
 * Setup and Configure Docker locally
+Refer Docker Installation Steps (above)
 * Setup and Configure Kubernetes locally
+Refer Kubernetes Installation steps (above)
 * Create Flask app in Container
+docker build --tag=udacityproject4 .
+docker run -p 8000:80 udacityproject4
 * Run via kubectl
+dockerpath=ntharish13/udacityproject4
+kubectl run udaproject4 --image=$dockerpath --port=80
+kubectl port-forward udaproject4 8000:80

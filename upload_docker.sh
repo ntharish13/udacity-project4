@@ -6,10 +6,14 @@
 # Step 1:
 # Create dockerpath
 # dockerpath=<your docker ID/path>
+dockerpath=ntharish13/udacityproject4
 
 # Step 2:  
 # Authenticate & tag
+docker login
+docker image tag udacityproject4 $dockerpath
 echo "Docker ID and Image: $dockerpath"
 
 # Step 3:
 # Push image to a docker repository
+docker image push $dockerpath
